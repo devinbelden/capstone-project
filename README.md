@@ -1,5 +1,3 @@
-<a href="https://colab.research.google.com/github/devinbelden/capstone-project/blob/master/initial_modeling.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-
 # Getting Started
 
 ## Obtain/Scrub
@@ -123,7 +121,7 @@ os.listdir()
 
 
 
-##Explore 
+## Explore 
 
 Now we're ready to import a few packages and explore our data. Fortuitously, the annotations are stored in a convenient CSV for us, complete with bounding box coordinates. While bounding boxes are outside the scope of this project in its current form, they are planned to be implemented in a future update.
 
@@ -304,7 +302,7 @@ plt.show()
 ```
 
 
-![png](output_14_0.png)
+![png](output_13_0.png)
 
 
 At this point, we should investigate the number of images with more than one annotation. For simplicity's sake, we'll eliminate all occurrences of this happening by dropping any row in `annotations` with a duplicate `Filename`. Afterwards, we'll replot the above graph according to our new statistics.
@@ -326,7 +324,7 @@ plt.show()
 ```
 
 
-![png](output_16_0.png)
+![png](output_15_0.png)
 
 
 Due to the number of unique labels, as well as the large imbalance in class occurrence, we'll only take a look at the top 5 most common classes in order to train our model. Naturally, we'll only test this model on those 5 classes as well.
@@ -1086,7 +1084,7 @@ make_prediction_graph('/resized_images_400x230/test/stop/1026.png',
 ```
 
 
-![png](output_42_0.png)
+![png](output_41_0.png)
 
 
 And sometimes it gets them very wrong.
@@ -1098,7 +1096,7 @@ make_prediction_graph('/resized_images_400x230/test/signalAhead/351.png',
 ```
 
 
-![png](output_44_0.png)
+![png](output_43_0.png)
 
 
 What causes this? A human can clearly see that this is a signal ahead sign, but what is a computer seeing that makes it think it's a pedestrian crossing sign instead?
@@ -1198,7 +1196,7 @@ lime_explain('/resized_images_400x230/test/stop/1026.png',
     
 
 
-![png](output_52_1.png)
+![png](output_51_1.png)
 
 
 Uh oh. It seems like the existence of an actual stop sign contributes absolutely nothing to the prediction of one! This is definitely a problem, as we don't want our computers to base their prediction of a stop sign on anything other than a white STOP emblazoned on a red octagon. So, while the model got this prediction correct according to the *label*, Lime has shown us that the model got it wrong according to the *pixels*.
@@ -1215,7 +1213,7 @@ lime_explain('/resized_images_400x230/test/signalAhead/351.png',
     
 
 
-![png](output_54_1.png)
+![png](output_53_1.png)
 
 
 Again, the model is not looking at the sign in order to predict the Pedestrian Crossing class.
@@ -1347,7 +1345,7 @@ make_prediction_graph('/resized_images_400x230/test/stop/1026.png',
 ```
 
 
-![png](output_64_0.png)
+![png](output_63_0.png)
 
 
 
@@ -1360,7 +1358,7 @@ lime_explain('/resized_images_400x230/test/stop/1026.png',
     
 
 
-![png](output_65_1.png)
+![png](output_64_1.png)
 
 
 
@@ -1370,7 +1368,7 @@ make_prediction_graph('/resized_images_400x230/test/signalAhead/351.png',
 ```
 
 
-![png](output_66_0.png)
+![png](output_65_0.png)
 
 
 
@@ -1383,7 +1381,7 @@ lime_explain('/resized_images_400x230/test/signalAhead/351.png',
     
 
 
-![png](output_67_1.png)
+![png](output_66_1.png)
 
 
 It is interesting how, in the first case, the sign itself is not present in the "positive" superpixels that contribute to the model's (usually incorrect) prediction. It's as though our model would misclassify a pile of laundry as a cat based solely on the presence of a litterbox. 
@@ -1563,7 +1561,7 @@ make_prediction_graph('/resized_images_400x230/test/stop/1026.png',
 ```
 
 
-![png](output_74_0.png)
+![png](output_73_0.png)
 
 
 
@@ -1576,7 +1574,7 @@ lime_explain('/resized_images_400x230/test/stop/1026.png',
     
 
 
-![png](output_75_1.png)
+![png](output_74_1.png)
 
 
 
@@ -1586,7 +1584,7 @@ make_prediction_graph('/resized_images_400x230/test/signalAhead/351.png',
 ```
 
 
-![png](output_76_0.png)
+![png](output_75_0.png)
 
 
 
@@ -1599,7 +1597,7 @@ lime_explain('/resized_images_400x230/test/signalAhead/351.png',
     
 
 
-![png](output_77_1.png)
+![png](output_76_1.png)
 
 
 As with the previous model, the pretrained model is significantly less confident in its answers. There is still no improvement on identifying the correct superpixels (and in fact, the third model doesn't look at the signal ahead sign at all), but the fact that the label predictions are less confident is an indication that there isn't enough diversity in the data to reliably distinguish between the different traffic signs.
@@ -1616,7 +1614,7 @@ lime_explain('/resized_images_400x230/test/stop/3905.png',
     
 
 
-![png](output_79_1.png)
+![png](output_78_1.png)
 
 
 
@@ -1629,7 +1627,7 @@ lime_explain('/resized_images_400x230/test/speedLimit25/3936.png',
     
 
 
-![png](output_80_1.png)
+![png](output_79_1.png)
 
 
 
@@ -1642,7 +1640,7 @@ lime_explain('/resized_images_400x230/test/pedestrianCrossing/3719.png',
     
 
 
-![png](output_81_1.png)
+![png](output_80_1.png)
 
 
 There doesn't seem to be any difference; the models fail to look at the sign itself in both types of pictures. 
@@ -1719,7 +1717,7 @@ lime_explain_preds(0, model=model)
     
 
 
-![png](output_86_1.png)
+![png](output_85_1.png)
 
 
 
@@ -1731,7 +1729,7 @@ lime_explain_preds(27, model=model_2)
     
 
 
-![png](output_87_1.png)
+![png](output_86_1.png)
 
 
 
@@ -1743,7 +1741,7 @@ lime_explain_preds(54, model=model_3)
     
 
 
-![png](output_88_1.png)
+![png](output_87_1.png)
 
 
 As expected, we see the same behavior from the models on a variety of testing images as well. Each model appears not to take into consideration the actual sign (or the full sign) when predicting the associated label. 
